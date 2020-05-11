@@ -1,11 +1,13 @@
 <div class="container">
-    <h2 class="centered">Mission Name: {{missionName}}</h2>
+    <h2 class="centered" *ngIf = "!editMissionName; else editMission" (click)="editMissionName = true">
+        Mission Name: {{missionName}}
+    </h2>
     <br>
     <div class="row justify-content-center">
         <div class="candidates col-3">
             <h2>Candidates</h2>
             <ol>
-                <li *ngFor = 'let candidate of candidates' (click)='selected = candidate'>{{candidate.name}}</li>
+                <li *ngFor = 'let candidate of candidates' (click)='selected = candidate; checkMissionStatus(selected)'>{{candidate.name}}</li>
             </ol>
         </div>
     
@@ -27,23 +29,21 @@
         <div class="crew col-3">
             <h2>Selected Crew</h2>
             <ul>
-                <li *ngFor = 'let crewMember of crew'>{{crewMember.name}}</li>
+                <li *ngFor = 'let crewMember of crew' (click) = 'removeFromCrew(crewMember)'>{{crewMember.name}}</li>
             </ul>
-            <!-- Add a "Clear Crew List" button here. -->
+            <button *ngIf = 'crew.length > 0' (click) = 'crew = []; selected = ""'>Clear Crew List</button>
         </div>
     </div>
     <hr>
-    <div class = 'centered'>
-        <button (click) = 'selected = false'>Clear Data & Image</button>
-        <button (click) = 'addToCrew(selected)'>Send On Mission</button>
+    <div *ngIf = 'selected != ""' class = 'centered'>
+        <button (click) = 'selected = false'>Clear Data & Image</button>&nbsp;
+        <button *ngIf = '!isOnCrew' (click) = 'addToCrew(selected); selected = ""'>Send On Mission</button>
     </div>
 </div>
 
-<!-- The code below is for one of the Bonus Missions -->
 <ng-template #editMission>
     <h2 class="centered">
         Mission Name:
-        <!-- Add a keyup.enter event that calls the changeMissionName function. -->
-        <input #newName type="text"/>
+        <input #newName type="text" value='{{missionName}}' (keyup.enter) = 'changeMissionName(newName.value); editMissionName = false' />
     </h2>
 </ng-template>
