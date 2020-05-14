@@ -53,6 +53,11 @@ export class AppComponent implements AfterContentInit {
     }
   }
 
+  keyPressed(event: Event) {
+    event.preventDefault();
+    console.log('key pressed', event);
+  }
+
   missionAbort() {
     if (window.confirm('Confirm abort mission.')) {
       this.land();
@@ -76,6 +81,12 @@ export class AppComponent implements AfterContentInit {
     this.height = 0;
     this.width = this.boxWidth/2 - 37;
     this.color = 'green';
+    this.takeOffEnabled = true;
+    this.upDisabled = true;
+    this.downDisabled = true;
+    this.leftDisabled = true;
+    this.rightDisabled = true;
+
   }
 
   move(direction: string){
