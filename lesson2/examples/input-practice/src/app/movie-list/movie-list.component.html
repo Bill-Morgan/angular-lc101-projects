@@ -1,8 +1,12 @@
 <div class='movies col-4'>
-    <h3>Movies to Watch</h3>
-    <ol>
-       <li *ngFor ="let movie of movies">{{movie}}</li>
-    </ol>
-    <hr>
-
- </div>
+   <h3>Movies to Watch</h3>
+   <ol (mouseenter) = 'mouseEnter()' (mouseleave) = 'mouseExit()'>
+      <li *ngFor="let movie of movies" (click) = 'deleteMovie(movie)'>{{movie}}</li>
+   </ol>
+   <p class='red' *ngIf='deleteMessage'>Click to delete</p>
+   <hr>
+   <input #newMovie (keyup.enter)='addMovie(newMovie.value); newMovie.value="" ' type='text'
+      placeholder="Enter Movie Title Here" />
+   <button (click)='addMovie(newMovie.value); newMovie.value="" '>Add</button>
+   <p *ngIf = 'errMsg != ""'>{{errMsg}}</p>
+</div>
