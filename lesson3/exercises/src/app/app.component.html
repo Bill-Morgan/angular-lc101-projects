@@ -23,18 +23,18 @@
 
       <div class="col-3">
          <div class="container-right"b>
-            <button (click)='move("up")'>Up</button>
-            <button (click)='move("down")'>Down</button>
-            <button (click)='move("right")'>Right</button>
-            <button (click)='move("left")'>Left</button>
+            <button (click)='move("up")' [disabled] = 'upDisabled'>Up</button>
+            <button (click)='move("down")' [disabled] = 'downDisabled'>Down</button>
+            <button (click)='move("right")' [disabled] = 'rightDisabled'>Right</button>
+            <button (click)='move("left")' [disabled] = 'leftDisabled'>Left</button>
             <h3>Space Shuttle Height</h3>
-            <p>{{ altitude }} km</p>
+            <p>{{ altitudeStr }} km</p>
          </div>
       </div>
    </div>
    <div class="container-control-buttons">
-      <button (click) = 'confirmLiftOff()' [disabled] = 'color == "blue"'>Take Off</button>
-      <button (click) = 'shuttleLand()' [disabled] = 'color == "green"'>Land</button>
-      <button [disabled] = 'color == "green"'>Abort Mission</button>
+      <button (click) = 'liftOff()' [disabled] = '!takeOffEnabled'>Take Off</button>
+      <button (click) = 'shuttleLand()' [disabled] = 'takeOffEnabled'>Land</button>
+      <button (click) =  'missionAbort() ' [disabled] = 'takeOffEnabled'>Abort Mission</button>
    </div>
 </div>
