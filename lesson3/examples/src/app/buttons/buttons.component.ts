@@ -7,10 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonsComponent implements OnInit {
    buttonHeading: string = "Buttons"
-   inactive: boolean = false;
+   gInactive: boolean = false;
+   cInactive: boolean = false;
+   sInactive: boolean = false;
 
    constructor() { }
 
    ngOnInit() { }
+
+   buttonChange() {
+      this.gInactive = !this.gInactive;
+      this.cInactive = !this.cInactive;
+      this.sInactive = !this.sInactive;
+   }
+
+   buttonActivate() {
+      this.gInactive = false;
+      this.cInactive = false;
+      this.sInactive = false;        
+   }
 
 }

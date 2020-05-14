@@ -11,6 +11,7 @@ export class SkillSetComponent implements OnInit {
    alternateColor: string = 'black';
    bulletType: string = 'A';
    changeColor: boolean = true;
+   reversed: boolean = false;
 
    constructor() { }
 
